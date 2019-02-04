@@ -28,11 +28,7 @@ deactivate HNB-ipg
 HMS-ipg-web-->merchant-backend: call back
 HMS-ipg-web-->merchant-backend:backchannel notifications
 deactivate HMS-ipg-web
-merchant-backend-->user-browser: payment receipt
-
-notification
-
-
+merchant-backend-->user-browser: payment receipt notification
 activate merchant-backend
 deactivate merchant-backend
 deactivateafter merchant-backend
