@@ -1,0 +1,38 @@
+title HNB IPG message flow
+
+activate user-browser
+activate merchant-backend
+user-browser->merchant-backend:Click Pay
+activate API-server
+merchant-backend-->API-server:merchant-id/ init()
+activate merchant-backend
+deactivate merchant-backend
+API-server-->merchant-backend:HMS-IPG re-direct URL
+deactivateafter API-server
+merchant-backend-->user-browser:re-direct
+deactivateafter merchant-backend
+user-browser-->HMS-ipg-web-UI: re-direct
+activate HMS-ipg-web-UI
+HMS-ipg-web-UI-->HMS-ipg-web: get form data()
+activate HMS-ipg-web
+HMS-ipg-web -->HMS-ipg-web-UI:form data
+HMS-ipg-web-UI-->HMS-ipg-web-UI:user confirmation
+HMS-ipg-web-UI-->HMS-ipg-web:form submit request 
+deactivateafter HMS-ipg-web-UI
+HMS-ipg-web-->HNB-ipg: form submit
+activate HNB-ipg
+HNB-ipg-->HNB-ipg: card processing
+HNB-ipg -->HMS-ipg-web:call back notification
+activate merchant-backend
+deactivate HNB-ipg
+HMS-ipg-web-->merchant-backend: call back
+HMS-ipg-web-->merchant-backend:backchannel notifications
+deactivate HMS-ipg-web
+merchant-backend-->user-browser: payment receipt
+
+notification
+
+
+activate merchant-backend
+deactivate merchant-backend
+deactivateafter merchant-backend
